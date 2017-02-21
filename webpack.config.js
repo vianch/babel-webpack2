@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const METADATA = {
     title: 'Input types example',
@@ -75,6 +76,9 @@ module.exports = {
             metadata: METADATA,
             inject: 'head'
         }),
+        new CopyWebpackPlugin([
+            { from: 'src/stylesheets', to: 'www/../../css' }
+        ]),
         new ScriptExtHtmlWebpackPlugin({
             defaultAttribute: 'defer'
         })
